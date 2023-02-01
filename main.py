@@ -12,7 +12,8 @@ def notifications():
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
         updates = soup.find_all('div', {'class': 'col-sm-6'})
-        return jsonify([update.text for update in updates])
+        for update in updates:
+            return jsonify([update.text])
     else:
         return jsonify({'error': f'Request to {url} failed with status code {response.status_code}'})
 
