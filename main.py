@@ -13,7 +13,7 @@ def notifications():
         soup = BeautifulSoup(response.content, 'html.parser')
         updates = soup.find_all('div', {'class': 'col-sm-6'})
         for update in updates:
-            return jsonify([update.text])
+            return jsonify(update.text)
     else:
         return jsonify({'error': f'Request to {url} failed with status code {response.status_code}'})
 
